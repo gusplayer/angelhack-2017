@@ -10,7 +10,6 @@ import orden from '@/components/orden'
 import solicitar from '@/components/solicitar'
 import clientes from '@/components/clientes'
 import cliente from '@/components/cliente'
-import chat from '@/components/chat'
 import nuevoCliente from '@/components/nuevo-cliente'
 
 Vue.use(Router)
@@ -50,19 +49,13 @@ export default new Router({
 		    	path: 'clientes',
 		    	component: clientes
 		    },{
-		    	path: 'cliente/:id',
-		    	component: cliente,
-		    	children: [
-	    			{
-		    			path: 'chat',
-		    			component: chat
-	    			}
-		    	]
-		    }
+		    	path: 'clientes/:id',
+		    	component: cliente
+		    },{
+		    	path: 'nuevo-cliente',
+		    	component: nuevoCliente
+	    	}
 		  ]
-	    },{
-	    	path: 'nuevo-cliente',
-	    	component: nuevoCliente
 	    }
   ]
 })

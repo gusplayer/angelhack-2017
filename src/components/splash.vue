@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Logo</h1>
+		<h1>splash</h1>
 	</div>
 </template>
 <script>
@@ -33,3 +33,10 @@ export default{
 	}
 }
 </script>
+
+<style>
+	video {
+		height: 100%;
+		width: 100%;
+	}
+</style>

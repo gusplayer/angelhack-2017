@@ -93,12 +93,10 @@ export default {
   name: 'inside',
   mounted() {
     let userRef = db.ref('/users/' + firebase.auth().currentUser.uid);
-        userRef.on('child_changed', (snapshot)=> {
+        userRef.on('value', (snapshot)=> {
+          console.log(snapshot.val());
           this.$store.state.currUser = snapshot.val();
         })
-        userRef.on('child_added', (snapshot)=> {
-          this.$store.state.currUser = snapshot.val();
-        });
   }
 }
 </script>

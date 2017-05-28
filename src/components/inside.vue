@@ -110,19 +110,11 @@ export default {
     }
   },
   name: 'inside',
-  firebase: {
-		// users: db.ref('/users').equalTo(firebase.auth().currentUser.uid),
-	},
   mounted() {
-    let userRef = db.ref('/users').orderByChild('uid').equalTo(firebase.auth().currentUser.uid);
+    let userRef = db.ref('/users/' + firebase.auth().currentUser.uid);
         userRef.on('child_changed', (snapshot)=> {
           this.$store.state.currUser = snapshot.val();
         })
-        userRef.on('child_added', (snapshot)=> {
-          console.log(snapshot.val());
-          console.log(snapshot.val());
-          this.$store.state.currUser = snapshot.val();
-        });
   }
 }
 </script>

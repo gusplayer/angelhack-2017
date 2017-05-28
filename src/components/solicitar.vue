@@ -64,7 +64,7 @@
 			solicitarPedido() {
 				let id,
 						t = this;
-				console.log(this.order);
+				console.log(this.$store.state.currUser);
 				let db = firebase.database();
 				db.ref('/users').orderByChild('uid').equalTo(firebase.auth().currentUser.uid)
 					.on('child_added', (snapshot)=> {

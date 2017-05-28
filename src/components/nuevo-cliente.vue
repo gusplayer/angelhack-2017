@@ -1,5 +1,9 @@
 <template>
 	<div class="nuevo_cliente">
+		<figure class="nuevo_cliente_logo">
+			<img src="../assets/logoWhite.png">
+			<p>Crea tus clientes</p>
+		</figure>
 		<div class="nuevo_cliente_form">
 			<input type="text" v-model="customername" placeholder="Nombre del cliente" class="input">
 			<input type="text" v-model="address" id="address" placeholder="Direccion" class="input">
@@ -55,6 +59,20 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		padding-bottom: 80px;
+	}
+	.nuevo_cliente_logo{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.nuevo_cliente_logo img{
+		max-width: 170px;
+		width: 100%;
+	}
+	.nuevo_cliente_logo p{
+		color: #257B4E;
+		font-size: 25px;
 	}
 	.nuevo_cliente_form{
 		display: flex;

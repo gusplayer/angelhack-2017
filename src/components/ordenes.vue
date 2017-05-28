@@ -33,11 +33,26 @@
 </template>
 
 <script>
+	let db = firebase.database();
 	export default {
+		data(){
+			return{
+				orders: [],
+			}
+		},
+		mounted(){
+				let orders;
+				let data = this;
+				let userRef = db.ref('/users/' + firebase.auth().currentUser.uid);
+        		userRef.on('child_changed', (snapshot)=> {
+        			console.log(snapshot.val())
+          			data.orders = snapshot.val().orders;
+        		})
+
+		},
 		computed: {
-			orders() {
-				console.log(this.$store.state.currUser.orders);
-				return this.$store.state.currUser.orders
+			order() {
+        		return orders;
 			}
 		}
 	}

@@ -45,7 +45,7 @@
 				});
 				firebase.auth().onAuthStateChanged(function(user) {
 				  if (user) {
-			      	firebase.database().ref('users/').push({
+			      	firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
 						uid: firebase.auth().currentUser.uid,
 						storename: store_name,
 						address: address,

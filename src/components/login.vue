@@ -21,18 +21,23 @@
 				password: '',
 			}
 		},
+		mounted() {
+			if(firebase.auth().currentUser){
+				this.$router.push('in/ordenes')
+			}
+		},
 		methods: {
 			loginUser() {
-				firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
-				  // Handle Errors here.
-				  var errorCode = error.code;
-				  var errorMessage = error.message;
-				  console.log(error)
+				let data = this;
+				firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function(){
+					console.log('todo fue un exito');
+					data.$router.push('in/ordenes')
+				}).catch(function(error) {
+				 console.log('error de datos');
 				  // ...
 				});
 				this.email = '';
 				this.password = '';
-				this.$router.push('in/ordenes')
 			}
 		}
 	}

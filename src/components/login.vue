@@ -7,10 +7,26 @@
 		<div class="login_form">
 			<input type="email" placeholder="Correo" class="input">
 			<input type="password" placeholder="Contraseña" class="input">
-			<router-link to="in" class="btnAction">Login</router-link>
+			<router-link to="in" class="btnAction">{{name}}</router-link>
 		</div>
 	</div>
 </template>
+
+<script>
+	export default{
+		data(){
+			return{
+
+			}
+		},
+		computed: {
+			name() {
+				return this.$store.state.name;
+			}
+		}
+	}
+</script>
+
 <style scoped>
 	.login{
 		width: 100%;

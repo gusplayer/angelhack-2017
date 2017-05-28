@@ -23,7 +23,7 @@
 			<div class="page2">
 				<img src="../assets/logoWhite.png" alt="logo">
 				<h2>!Tenemos lo que mas te conviene!</h2>
-				<div data-id='2' :data-m='option.id_mensajero' v-for='option in options' v-on:click.prevent='nextStep' class="opt">
+				<div data-id='2' :data-m='index' v-for='(option, index) in options' v-on:click.prevent='nextStep' class="opt">
 					<div class="imgcont">
 						<img :src="option.logo" alt="algo">
 					</div>
@@ -52,7 +52,7 @@
 			return {
 					order: {},
 					options: {},
-					rappitendero: ''
+					rappitendero: Number
 			}
 		},
 		mounted(){
@@ -61,14 +61,16 @@
 		    var data = this;
 		    searchBox.addListener('places_changed', ()=> {
           		var places = searchBox.getPlaces();
+							console.log(places[0]);
+							this.order.dir = places[0].formatted_address;
           		this.order.lat = places[0].geometry.location.lat();
           		this.order.lng = places[0].geometry.location.lng();
-							console.log(this.order);
           	})
 
 		},
 		computed: {
 			user() {
+				console.log(this.$store.state.currUser);
 				return this.$store.state.currUser;
 			},
 		},
@@ -103,9 +105,29 @@
 
 						break;
 					case '2':
-						console.log(clicked.m);
-						this.rappitendero = clicked.m;
-						console.log(this.rapitendero);
+						this.rappitendero = parseInt(clicked.m);
+						console.log(this.rappitendero);
+						var json = JSON.stringify({
+							'id_mensajero': this.rappitendero
+						});
+						var t = this;
+						console.log(this.rappitendero);
+						console.log(this.options);
+						console.log(this.options[this.rappitendero]);
+						this.order.envio = this.options[this.rappitendero];
+						axios.defaults.headers.common['content-type'] = `application/json`;
+		        axios.post(`http://brainmakers.net/seleccionarmensajero`, json)
+									.then(
+										(r) => {
+											t.solicitarPedido();
+											t.$router.push('/in/ordenes');
+										}
+									)
+									.catch(
+										(e) => {
+											console.log(e);
+										}
+									)
 						break;
 
 				}
@@ -121,14 +143,10 @@
 			solicitarPedido() {
 				let id,
 						t = this;
-				console.log(this.$store.state.currUser);
 				let db = firebase.database();
-				db.ref('/users').orderByChild('uid').equalTo(firebase.auth().currentUser.uid)
-					.on('child_added', (snapshot)=> {
-						id = snapshot.key;
-						console.log(snapshot.address);
-						db.ref(`users/${id}/orders`).push(t.order)
-					});
+				console.log(t.order);
+				db.ref('/users/'+ firebase.auth().currentUser.uid + '/orders').push(t.order)
+
 			}
 		}
 	}
@@ -195,7 +213,7 @@
 	}
 	.container .page2 .opt h2 {
 		color: #40CC93;
-		font-size: 20px;
+		font-size: 19px;
 		margin: 5px;
 		padding-left: 10px;
 	}

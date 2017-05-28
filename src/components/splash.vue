@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>splash</h1>
+		<img src="../assets/video.gif" alt="splash">
 	</div>
 </template>
 <script>
@@ -34,9 +34,9 @@ export default{
 }
 </script>
 
-<style>
-	video {
-		height: 100%;
+<style scoped>
+	img {
+		height: 100vh;
 		width: 100%;
 	}
 </style>

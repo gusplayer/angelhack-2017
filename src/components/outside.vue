@@ -9,6 +9,9 @@ export default {
   data () {
     return {
     }
+  },
+  mounted() {
+    this.$router.push('/splash');
   }
 }
 </script>

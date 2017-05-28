@@ -20,7 +20,7 @@
 				<div :id="index" class="order hidden">
 					<p class="order_distancia">Distancia a destino</p>
 					<hr>
-					<div id="mapOrder"></div>
+					<img id="mapOrder" src="../assets/mapa.jpeg"></img>
 					<div class="order_content">
 						<img :src="order.envio.foto">
 						<div>
@@ -58,12 +58,24 @@
 			}
 		},
 		mounted(){
+				
 				let orders;
 				let data = this;
 				let userRef = db.ref('/users/' + firebase.auth().currentUser.uid);
         		userRef.on('value', (snapshot)=> {
           			data.orders = snapshot.val().orders;
         		})
+
+				var mapOrder = new google.maps.Map(document.getElementById('mapOrder'), {
+			        center: {lat: -34.397, lng: 150.644},
+			        zoom: 14,
+					mapTypeControl: false,
+					scaleControl: false,
+					streetViewControl: false,
+					rotateControl: false,
+					fullscreenControl: false
+				});
+				
 
 		},
 		filters: {

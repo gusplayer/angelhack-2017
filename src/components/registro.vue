@@ -1,8 +1,11 @@
 <template>
 	<div class="registro screen-padding">
+		<figure class="registro_logo">
+			<img src="../assets/app.png">
+			<h1 class="registro_title">Vecino</h1>
+		</figure>
 		<div class="registro_header">
 			<h2 class="registro_title light">Crea tu cuenta</h2>
-			<p class="registro_text">No te preocupes por tus envios</p>
 		</div>
 		<div class="registro_form">
 			<input type="email" v-model="email" placeholder="Correo" class="input">
@@ -67,11 +70,26 @@
 	.registro{
 		width: 100%;
 		height: 100vh;
-		background-color: #ff5845;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-around;
+	}
+	.registro_logo{
+		width: 100%;
+		max-height: 150px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.registro_logo img{
+		width: 100px;
+		height: 100px;
+	}
+	.registro_title{
+		font-family: 'Lobster', cursive;
+		color: #5f5e70;
 	}
 	.registro_header{
 		color:#FFF;
@@ -89,7 +107,7 @@
 	}
 	.btnAction{
 		margin-top: 30px;
-		background-color: #FFF;
-		color: #ff5845;
+		background-color: #40CC93;
+		color: #FFF;
 	}
 </style>

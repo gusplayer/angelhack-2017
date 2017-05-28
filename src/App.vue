@@ -24,32 +24,35 @@ export default {
     max-width: 300px;
     width: 100%;
     border-style: none;
-    border: 1px solid #FFF;
-    padding: 10px;
-    margin: 10px;
-    background-color: transparent;
+    padding: 20px;
+    margin: 2px;
+    background-color: #fbfaff;
     color: #FFF;
   }
   .input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #FFF;
+  color: black;
   }
   .input::-moz-placeholder { /* Firefox 19+ */
-    color: #FFF;
+    color: black;
   }
   .input:-ms-input-placeholder { /* IE 10+ */
-    color: #FFF;
+    color: black;
   }
   .input:-moz-placeholder { /* Firefox 18- */
-    color: #FFF;
+    color: black;
   }
 
   .btnAction{
-    color: #FFF;
-    background-color: red;
+    color: #1b6544;
+    border-style: none;
+    background-color: #D6F6B5;
     text-decoration: none;
     padding: 10px 60px;
     border-radius: 25px;
     outline: none;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0px 10px 10px -3px rgba(0,0,0,0.08);
   }
 
   .light{

@@ -1,7 +1,7 @@
 <template>
 	<div class="clientes screen_padding">
 		<router-link to="nuevo-cliente" class="btnAction">Crear Cliente</router-link>
-		<router-link to="clientes/2" class="cliente_card" v-for="customer in customers" >
+		<router-link to="clientes/3" class="cliente_card" v-for="customer in customers" >
 			<div>
 				<span></span>
 			</div>
@@ -13,7 +13,7 @@
 		</router-link>
 	</div>
 </template>
-<script scoped>
+<script>
 	export default{
 		firebase: {
 			customers: firebase.database().ref('/customers')

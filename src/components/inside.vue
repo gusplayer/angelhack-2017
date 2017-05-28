@@ -73,7 +73,7 @@
         </g>
         </svg>
       </router-link>
-      
+
       <router-link to='/in/clientes'>
         <!-- <img src="../assets/menuLibreria.png" alt="libreria"> -->
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -119,8 +119,6 @@ export default {
           this.$store.state.currUser = snapshot.val();
         })
         userRef.on('child_added', (snapshot)=> {
-          console.log(snapshot.val());
-          console.log(snapshot.val());
           this.$store.state.currUser = snapshot.val();
         });
   }
@@ -167,8 +165,20 @@ export default {
 .navigation a svg {
   height: 40px;
   width: 40px;
-}s
-.navigation a.router-link-active {
-  background-color: black;
+  /*stroke: black;*/
+}
+.navigation a.router-link-active svg {
+  height: 45px;
+  width: 45px;
+}
+.navigation a.router-link-active svg,
+.navigation a.router-link-active svg path {
+  /*stroke: #40CC93;*/
+  fill: #40CC93;
+}
+.navigation a.router-link-active svg line,
+.navigation a.router-link-active svg polyline {
+  fill: #40cc93;
+  stroke: #40cc93;
 }
 </style>

@@ -11,7 +11,7 @@
 			<input type="email" v-model="email" placeholder="Correo" class="input">
 			<input type="password" v-model="password" placeholder="Contraseña" class="input">
 			<input type="text" class="input" v-model="store_name" placeholder="Nombre de la tienda">
-			<input type="text" class="input" v-model="address" placeholder="Direccion">
+			<input id='dir' type="text" class="input" v-model="address" placeholder="Direccion">
 			<input type="text" class="input" v-model="phone_number" placeholder="Celular">
 			<button class="btnAction" v-on:click="saveUser" >Crear</button>
 		</div>
@@ -26,7 +26,21 @@
 				store_name: '',
 				address: '',
 				phone_number: '',
+				lat: '',
+				long: ''
 			}
+		},
+		mounted(){
+			var input = document.getElementById('dir');
+		    var searchBox = new google.maps.places.SearchBox(input);
+		    var data = this;
+		    searchBox.addListener('places_changed', ()=> {
+          		var places = searchBox.getPlaces();
+          		this.lat = places[0].geometry.location.lat();
+          		this.long = places[0].geometry.location.lng();
+							console.log(this.order);
+          	})
+
 		},
 		computed: {
 
@@ -36,6 +50,8 @@
 				let store_name = this.store_name;
 				let address = this.address;
 				let phone_number = this.phone_number;
+				let _lat = this.lat;
+				let _long = this.long;
 				firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
 				}).catch(function(error) {
 				  // Handle Errors here.
@@ -50,6 +66,8 @@
 						storename: store_name,
 						address: address,
 						phonenumber: phone_number,
+						lat: _lat,
+						long: _long
 					});
 				  } else {
 				    // No user is signed in.

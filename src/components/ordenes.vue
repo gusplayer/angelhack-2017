@@ -19,7 +19,7 @@
 		</div>
 
 		<div v-else class="noOrders">
-			<img class='loading' src="../assets/loading.gif" alt="">
+			<img class='loading' src="../assets/logoWhite.png" alt="">
 			<h3>Parece que no tienes ningúna solicitud de recogida</h3>
 			<div class="cta">
 				<router-link to='/in/solicitar'>
@@ -120,12 +120,16 @@
 	}
 	.container .loading {
 		margin-top: 20%;
-		height: 100px;
+		height: 140px;
 		margin-bottom: 60px;
 	}
 	.container .noOrders > h3 {
 		margin-bottom: 50px;
 		text-align: center;
+		font-size: 18px;
+		padding: 0 47px;
+		color: #525252;
+		font-weight: 400;
 	}
 	.container .cta {
 		background-color: #40CC93;

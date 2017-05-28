@@ -26,8 +26,16 @@
 		},
 		methods: {
 			solicitarPedido() {
+				let id,
+						t = this;
 				console.log(this.order);
-				
+				let db = firebase.database();
+				db.ref('/users').orderByChild('uid').equalTo(firebase.auth().currentUser.uid)
+					.on('child_added', (snapshot)=> {
+						id = snapshot.key;
+						console.log(snapshot.address);
+						db.ref(`users/${id}/orders`).push(t.order)
+					});
 			}
 		}
 	}

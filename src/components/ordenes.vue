@@ -1,13 +1,15 @@
 <template>
 	<div class="container">
-		<h1 v-for="order in orders">{{order}}</h1>
-		<div v-if='orders'>
 
+		<div v-if='orders'>
+			<div class='singleOrder' v-for="order in orders">
+
+			</div>
 		</div>
 
 		<div v-else class="noOrders">
 			<img class='loading' src="../assets/loading.gif" alt="">
-			<h3>Parece que no tienes ningúna solicitud de recogida activa</h3>
+			<h3>Parece que no tienes ningúna solicitud de recogida</h3>
 			<div class="cta">
 				<router-link to='/in/solicitar'>
 					Solicita tu recogida
@@ -23,16 +25,19 @@
 	export default {
 		computed: {
 			orders() {
-				return this.$store.state.users.orders
-			},
-			ordersSize() {
-				return this.$store.state.users.orders.size
+				return this.$store.state.currUser.orders
 			}
 		}
 	}
 </script>
 
 <style scoped>
+
+	.container .noOrders {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 	.container .loading {
 		margin-top: 20%;
 		height: 100px;
@@ -40,6 +45,7 @@
 	}
 	.container h3 {
 		margin-bottom: 50px;
+		text-align: center;
 	}
 	.container .cta {
 		background-color: #40CC93;
@@ -58,12 +64,3 @@
 		font-weight: 600;
 	}
 </style>
-<script>
-	export default{
-		computed: {
-			ususarios() {
-				return this.$store.state.users
-			}
-		}
-	}
-</script>

@@ -19,8 +19,24 @@
 </template>
 
 <script>
+let db = firebase.database();
 export default {
-  name: 'inside'
+  data() {
+    return  {
+      users: {},
+    }
+  },
+  name: 'inside',
+  firebase: {
+		// users: db.ref('/users').equalTo(firebase.auth().currentUser.uid),
+	},
+  mounted() {
+    db.ref('/users').orderByChild('uid').equalTo(firebase.auth().currentUser.uid)
+        .on('child_changed', (snapshot)=> {
+          console.log(snapshot.val());
+          this.$store.state.currUser = snapshot.val();
+        });
+  }
 }
 </script>
 
@@ -33,14 +49,19 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+#inside {
+  height: 100vh;
+  background: linear-gradient(45deg, #29E5AF, #D6F6B5);
+}
 .navigation {
   width: 100%;
-  height: 50px;
+  height: 60px;
   position: absolute;
   bottom: 0;
   border-top: 1px solid #eee;
   display: flex;
   flex-direction: row;
+  background-color: white;
 }
 .navigation a {
   height: 100%;

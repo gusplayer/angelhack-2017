@@ -1,17 +1,42 @@
 <template>
 	<div class='container'>
-		<label for="dirDest">Dirección Destino</label>
-		<input v-model='order.dir' class='input' type="text" id='dirDest'></input>
-		<label for="telDest">Teléfono de contacto</label>
-		<input v-model='order.tel' class='input' type="phone" id='telDest'></input>
-		<label for="nomDest">Nombre Destino</label>
-		<input v-model='order.nombre' class='input' type="text" id='nomDest'></input>
-		<label for="dirDest">Costo</label>
-		<span class='currency'>
-			<input v-model='order.cost' class='input' type="number" id='costDest'></input>
-		</span>
 
-		<button class='cta' type="button" v-on:click='solicitarPedido'>Solicitar</button>
+		<div class="scrollContainer">
+			<div class="page1">
+				<img src="../assets/logoWhite.png" alt="logo">
+				<h2>!Estamos listos para tus clientes!</h2>
+				<span class='basicInput'>
+					<img src="../assets/nombre.png" alt="">
+					<input v-model='order.nombre' class='input' type="text" id='nomDest'></input>
+				</span>
+				<span class='basicInput'>
+					<img src="../assets/ubicacion.png" alt="">
+					<input v-model='order.dir' class='input' type="text" id='dirDest'></input>
+				</span>
+				<span class='currency basicInput'>
+					<img src="../assets/costo.png" alt="">
+					<input v-model='order.cost' class='input' type="number" id='costDest'></input>
+				</span>
+				<button class='cta' type="button" v-on:click='nextStep'>SOLICITAR ENVÍO</button>
+			</div>
+
+			<div class="page2">
+				<h1>page 2</h1>
+			</div>
+
+			<div class="page3">
+				<h1>page 3</h1>
+			</div>
+
+			<div class="page4">
+				<h1>page 4</h1>
+			</div>
+		</div>
+
+
+
+
+
 
 	</div>
 
@@ -25,6 +50,17 @@
 			}
 		},
 		methods: {
+			nextStep() {
+				let scroll = document.querySelector('.scrollContainer'),
+						w = window.innerWidth;
+				scroll.style.transform = `translateX(-${w}px)`;
+			},
+			prevStep() {
+				let scroll = document.querySelector('.scrollContainer'),
+						w = window.innerWidth;
+						console.log(w);
+				scroll.style.transform = `translateX(${w}px)`;
+			},
 			solicitarPedido() {
 				let id,
 						t = this;
@@ -46,38 +82,83 @@
 <style scoped>
 	.container {
 		display: flex;
-		flex-direction: column;
-		align-items: left;
-		padding: 20px 20px 0;
-
+		flex-direction: row;
+		align-items: center;
+		max-width: 100vw;
+		overflow: hidden;
 	}
-	.container .input {
-		border: 1px solid #eee;
+	.container .scrollContainer {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		position: relative;
+		transition: all .2s ease-in-out;
+	}
+	.container .page1,
+	.container .page2,
+	.container .page3,
+	.container .page4 {
+		min-width: 100vw;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 20px 20px 0;
+	}
+	.container .page1 img {
+		height: 200px;
+	}
+	.container .page1 h2 {
+		color: white;
+		margin-bottom: 20px;
+	}
+	.container .basicInput {
+		width: 80%;
+		height: 50px;
+		background-color: white;
+		margin: 5px 0;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	.container .basicInput img {
+		height: 20px;
+		width: 20px;
+		margin: 0 15px;
+	}
+	.container .basicInput .input:focus {
+		outline: none;
+	}
+	.container .basicInput .input {
 		margin-left: 0;
 		color: black;
-		width: 200px;
+		flex-grow: 1;
+		font-size: 14px;
+		color: #666;
 	}
 	.currency {
 		position: relative;
 	}
 	.currency::after {
 		position: absolute;
-		right: 20px;
+		right: 25px;
 		top: 18px;
 		content: '$';
+		color: #c1c1c1;
 	}
 	.container .cta {
 		margin-top: 30px;
-		background-color: #40CC93;
-		height: 40px;
-		width: 250px;
+		background-color: #DAF8B8;
+		height: 50px;
+		width: 280px;
+		border-radius: 40px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
 		text-decoration: none;
-		color: white;
-		font-size: 16px;
+		color: #40CC93;
+		font-size: 19px;
 		font-weight: 600;
 		outline: none;
 		border: none;

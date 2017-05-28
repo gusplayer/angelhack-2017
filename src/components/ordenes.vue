@@ -6,16 +6,32 @@
 				<img src="../assets/logoWhite.png" alt="logo">
 				<p>Tus pedidos</p>
 			</div>
-			<router-link :to="'/in/ordenes/'+index" class='singleOrder' v-for="(order, index) in orders">
-				<div class="left">
-					$ {{order.cost}}
+			<div  v-for="(order, index) in orders">
+				<div class='singleOrder' v-on:click="toggleOrder(index)">
+						<div class="left">
+							$ {{order.cost | tipoPeso}}
+						</div>
+						<div class="right">
+							<h1>{{order.nombre}}</h1>
+							<h2>{{order.dir | substr}}</h2>
+							<h3>4 km a destino - 5 min ETA</h3>
+						</div>
 				</div>
-				<div class="right">
-					<h1>{{order.nombre}}</h1>
-					<h2>{{order.dir}}</h2>
-					<h3>4 km a destino - 5 min ETA</h3>
+				<div :id="index" class="order hidden">
+					<p class="order_distancia">Distancia a destino</p>
+					<hr>
+					<div id="mapOrder"></div>
+					<div class="order_content">
+						<img :src="order.envio.foto">
+						<div>
+							<p>{{order.envio.nombre}}</p>
+						</div>
+						<a href="tel:+546788768"><i class="material-icons">phone</i></a>
+						<i class="material-icons">chat</i>
+					</div>
 				</div>
-			</router-link>
+			</div>
+
 		</div>
 
 		<div v-else class="noOrders">
@@ -38,6 +54,7 @@
 		data(){
 			return{
 				orders: [],
+				orderCount: 0,
 			}
 		},
 		mounted(){
@@ -45,14 +62,21 @@
 				let data = this;
 				let userRef = db.ref('/users/' + firebase.auth().currentUser.uid);
         		userRef.on('value', (snapshot)=> {
-        			console.log(snapshot.val())
           			data.orders = snapshot.val().orders;
         		})
 
 		},
-		computed: {
-			order() {
-        		return orders;
+		filters: {
+			tipoPeso(value){
+				return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			},
+			substr(value){
+				return value.substr(0, 30) + "...";
+			}
+		},
+		methods: {
+			toggleOrder(index){
+				document.getElementById(index).classList.toggle("hidden");
 			}
 		}
 	}
@@ -161,5 +185,59 @@
 		color: white;
 		font-size: 16px;
 		font-weight: 600;
+	}
+	.order{
+		width: 80%;
+		background-color: white;
+		margin: 10px auto;
+		display: flex;
+		flex-direction: column;
+		box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.14);
+		padding: 5px;
+		opacity: 1;
+		visibility: visible;
+	}
+	.order_distancia{
+		color: #29E5AF;
+		margin-left: 2.5%;
+		margin-bottom: 10px;
+	}
+	hr{
+		background-color: #29E5AF;
+		width: 95%;
+		height: 4.5px;
+		border-radius: 5px;
+		border-style: none;
+		margin: 0px auto;
+	}
+	#mapOrder{
+		width: 100%;
+		height: 200px;
+		background-color: #e7e7e7;
+		border-bottom: 1px solid #29E5AF;
+	}
+	.order_content{
+		display: flex;
+		justify-content: space-around;
+		margin-top: 10px;
+	}
+	.hidden{
+		height: 0px;
+		opacity: 0px;
+		visibility: hidden;
+	}
+	.order_content img{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #EEE;
+	}
+	.order i{
+		color: #29E5AF;
+		font-size: 40px;
+		padding: 2px;
+	}
+	.order i:first-child{
+		border-right: 1px solid #29E5AF;
 	}
 </style>

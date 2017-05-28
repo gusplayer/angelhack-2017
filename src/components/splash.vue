@@ -18,15 +18,13 @@ const config = {
 }
 firebase.initializeApp(config);
 window.firebase = firebase;
-let db = firebase.database();
+
 Vue.use(VueFire)
 export default{
-	firebase: {
-		users: db.ref('/user'),
-	},
 	mounted() {
-		this.$store.state.users = this.users;
-		this.$store.state.fire = firebase.auth();
+		setTimeout(()=> {
+			this.$router.push('/login')
+		}, 3000);
 	},
 	computed: {
 		usuarios() {

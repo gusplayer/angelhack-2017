@@ -33,8 +33,12 @@
 		align-items: center;
 	}
 	.cliente_card{
-		box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
-		padding: 10px 20px;
-		margin: 10px;
+		width: 80%;
+		height: 105px;
+		background-color: white;
+		margin: 20px auto;
+		display: flex;
+		flex-direction: row;
+		box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.14);
 	}
 </style>

@@ -8,5 +8,6 @@ export const store = new Vuex.Store({
 		name: 'Diego',
 		users: [],
 		ordenes: [],
+		fire: null,
 	}
 })

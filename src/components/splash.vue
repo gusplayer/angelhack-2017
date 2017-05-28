@@ -1,6 +1,6 @@
 <template>
 	<div>
-			<h1 v-for="user in usuarios" >{{user.nombre}}</h1>
+		<h1>Logo</h1>
 	</div>
 </template>
 <script>
@@ -17,9 +17,9 @@ const config = {
     messagingSenderId: "532482512198"
 }
 firebase.initializeApp(config);
-var db = firebase.database()
-window.firebase = firebase;
 
+window.firebase = firebase;
+let db = firebase.database();
 Vue.use(VueFire)
 export default{
 	firebase: {

@@ -58,3 +58,12 @@
 		font-weight: 600;
 	}
 </style>
+<script>
+	export default{
+		computed: {
+			ususarios() {
+				return this.$store.state.users
+			}
+		}
+	}
+</script>

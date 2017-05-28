@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
 }
 </script>
 
@@ -14,6 +14,8 @@ export default {
   *{
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
   }
   .screen-padding{
     padding: 30px;
@@ -47,5 +49,10 @@ export default {
     text-decoration: none;
     padding: 10px 60px;
     border-radius: 25px;
+    outline: none;
+  }
+
+  .light{
+    font-weight: lighter;
   }
 </style>

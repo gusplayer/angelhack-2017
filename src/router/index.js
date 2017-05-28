@@ -36,7 +36,10 @@ export default new Router({
     	path: '/in',
     	component: inside,
     	children: [
-		    {
+				{
+		    	path: 'perfil',
+		    	component: ordenes
+		    },{
 		    	path: 'ordenes',
 		    	component: ordenes
 		    },{

@@ -18,6 +18,7 @@ const config = {
 }
 firebase.initializeApp(config);
 var db = firebase.database()
+window.firebase = firebase;
 
 Vue.use(VueFire)
 export default{
@@ -26,6 +27,9 @@ export default{
 	},
 	mounted() {
 		this.$store.state.users = this.users;
+		setTimeout(()=> {
+			this.$router.push('/in/ordenes')
+		}, 3000);
 	},
 	computed: {
 		usuarios() {

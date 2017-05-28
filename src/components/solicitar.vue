@@ -11,7 +11,7 @@
 			<input v-model='order.cost' class='input' type="number" id='costDest'></input>
 		</span>
 
-		<button type="button" v-on:click='solicitarPedido'>Solicitar</button>
+		<button class='cta' type="button" v-on:click='solicitarPedido'>Solicitar</button>
 
 	</div>
 
@@ -27,6 +27,7 @@
 		methods: {
 			solicitarPedido() {
 				console.log(this.order);
+				
 			}
 		}
 	}
@@ -56,5 +57,21 @@
 		right: 20px;
 		top: 18px;
 		content: '$';
+	}
+	.container .cta {
+		margin-top: 30px;
+		background-color: #40CC93;
+		height: 40px;
+		width: 250px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		color: white;
+		font-size: 16px;
+		font-weight: 600;
+		outline: none;
+		border: none;
 	}
 </style>

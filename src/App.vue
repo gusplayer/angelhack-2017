@@ -27,7 +27,6 @@ export default {
     padding: 20px;
     margin: 2px;
     background-color: #fbfaff;
-    color: #FFF;
   }
   .input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: black;

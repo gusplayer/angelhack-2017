@@ -10,5 +10,6 @@ export const store = new Vuex.Store({
 		currUser: {},
 		ordenes: [],
 		fire: null,
+		customers: [],
 	}
 })
